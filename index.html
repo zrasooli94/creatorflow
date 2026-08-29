@@ -1,17 +1,761 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CreatorFlow</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CreatorFlow | Desktop Video Publishing for Creators</title>
+  <meta
+    name="description"
+    content="CreatorFlow is a desktop creator utility that helps creators securely review and publish their own video content using official platform integrations."
+  />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text: #f5f7ff;
+      --muted: #b7c0d8;
+      --primary: #6d8cff;
+      --primary-2: #8b5cf6;
+      --accent: #22d3ee;
+      --success: #22c55e;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 20px;
+      --radius-sm: 14px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(109, 140, 255, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(139, 92, 246, 0.16), transparent 25%),
+        linear-gradient(180deg, #0a0f1d 0%, #0c1222 50%, #0a1020 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 15, 29, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .brand-mark span {
+      font-size: 1.2rem;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 1.05rem;
+    }
+
+    .brand-text small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.78rem;
+      margin-top: 2px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: #fff;
+    }
+
+    .nav-cta {
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white !important;
+      box-shadow: 0 12px 30px rgba(109, 140, 255, 0.35);
+    }
+
+    .hero {
+      padding: 72px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dfe7ff;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      margin: 0 0 18px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 700px;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 14px 30px rgba(109, 140, 255, 0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .point {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: #dbe4ff;
+      font-size: 0.93rem;
+      font-weight: 600;
+    }
+
+    .hero-card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -28% auto;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .mini-window {
+      background: #0d1426;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .mini-window-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .mini-window-body {
+      padding: 20px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9rem;
+      color: #c6d5ff;
+    }
+
+    .terminal-line {
+      margin-bottom: 12px;
+      white-space: pre-wrap;
+    }
+
+    .ok {
+      color: #86efac;
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      margin: 0 0 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 0 28px;
+      font-size: 1.03rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.14rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(109, 140, 255, 0.2), rgba(139, 92, 246, 0.18));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 22px;
+      position: relative;
+    }
+
+    .step-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .list li strong {
+      color: #fff;
+    }
+
+    .tick {
+      color: var(--success);
+      font-weight: 900;
+      margin-top: 1px;
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, rgba(109,140,255,0.12), rgba(34,211,238,0.1));
+      border: 1px solid rgba(109, 140, 255, 0.22);
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .links a {
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 26px 0 60px;
+    }
+
+    .footer-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-box p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .cards,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        min-height: 66px;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>CreatorFlow</h1>
-  <p>CreatorFlow is a desktop tool that helps creators publish and manage their own video content across connected platforms.</p>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#">
+        <div class="brand-mark">
+          <span>▶</span>
+        </div>
+        <div class="brand-text">
+          <strong>CreatorFlow</strong>
+          <small>Desktop publishing for creators</small>
+        </div>
+      </a>
 
-  <p>
-    <a href="terms.html">Terms of Service</a> |
-    <a href="privacy.html">Privacy Policy</a>
-  </p>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#integration">Integration</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a class="nav-cta" href="#review">For Review</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Official creator publishing workflow</div>
+          <h1>Desktop Video Publishing for Creators</h1>
+          <p>
+            CreatorFlow is a desktop creator utility that helps authenticated creators
+            securely review, manage, and publish their own video content using official
+            platform integrations and controlled publishing workflows.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#how-it-works">See How It Works</a>
+            <a class="btn btn-secondary" href="privacy.html">Privacy Policy</a>
+            <a class="btn btn-secondary" href="terms.html">Terms of Service</a>
+          </div>
+
+          <div class="hero-points">
+            <div class="point">Secure creator authentication</div>
+            <div class="point">Controlled publishing workflow</div>
+            <div class="point">Status tracking and recovery</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="mini-window">
+            <div class="mini-window-top">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="mini-window-body">
+              <div class="terminal-line">$ .venv/bin/python uploadTiktok.py --auth</div>
+              <div class="terminal-line ok">TikTok authorization saved locally.</div>
+              <div class="terminal-line">$ .venv/bin/python uploadTiktok.py --once</div>
+              <div class="terminal-line">Account: authorized creator</div>
+              <div class="terminal-line">Caption: reviewed before publish</div>
+              <div class="terminal-line">Privacy: selected per allowed options</div>
+              <div class="terminal-line ok">PUBLISH_COMPLETE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <h2 class="section-title">What CreatorFlow Does</h2>
+        <p class="section-subtitle">
+          CreatorFlow is designed for creators who want a safe, structured publishing
+          workflow for their own content, with clear review, confirmation, and post-status tracking.
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <div class="icon">🔐</div>
+            <h3>Secure Account Connection</h3>
+            <p>
+              Authenticated creators connect their account through official authorization
+              flows and controlled permission scopes.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🎬</div>
+            <h3>Local Video Review</h3>
+            <p>
+              Videos are selected from local storage and reviewed before any post is
+              initialized, helping creators stay in control of what is published.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>Publishing Controls</h3>
+            <p>
+              The workflow presents creator account details, captions, privacy options,
+              and posting settings before publication.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">📡</div>
+            <h3>Official API Integration</h3>
+            <p>
+              CreatorFlow uses official platform integrations such as TikTok Login Kit
+              and Content Posting API for supported workflows.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">✅</div>
+            <h3>Status Verification</h3>
+            <p>
+              Posting status is tracked after initialization so the workflow can confirm
+              completion and safely handle recovery if needed.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🗂️</div>
+            <h3>Orderly File Handling</h3>
+            <p>
+              Completed files can be moved through a structured workflow so the creator
+              can distinguish pending and completed publishing items.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">
+          CreatorFlow follows a simple creator-controlled process from authorization to successful publication.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Connect</h3>
+            <p>
+              The creator authorizes their account through an official login flow.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Select</h3>
+            <p>
+              The creator chooses a local video file prepared for publishing.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Review</h3>
+            <p>
+              The application shows account details, caption, privacy, and interaction settings.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">4</div>
+            <h3>Confirm</h3>
+            <p>
+              Nothing is posted until the creator explicitly approves the publishing action.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">5</div>
+            <h3>Publish</h3>
+            <p>
+              The platform processes the post and CreatorFlow checks completion status safely.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="integration">
+      <div class="container split">
+        <div class="card highlight">
+          <h2 class="section-title" style="font-size: 2rem; margin-bottom: 10px;">TikTok Integration</h2>
+          <p class="section-subtitle" style="margin-bottom: 18px;">
+            CreatorFlow uses TikTok’s official developer products for authenticated creator workflows.
+          </p>
+          <ul class="list">
+            <li><span class="tick">✓</span><span><strong>Login Kit</strong> for creator authentication</span></li>
+            <li><span class="tick">✓</span><span><strong>Content Posting API</strong> for creator-approved publishing</span></li>
+            <li><span class="tick">✓</span><span><strong>Creator Info retrieval</strong> before posting</span></li>
+            <li><span class="tick">✓</span><span><strong>Status polling</strong> until completion is confirmed</span></li>
+            <li><span class="tick">✓</span><span><strong>Recovery-safe workflow</strong> to avoid duplicate posting</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title" style="font-size: 2rem; margin-bottom: 10px;">Platform Principles</h2>
+          <ul class="list">
+            <li><span class="tick">✓</span><span>Only the authenticated creator’s own content is handled.</span></li>
+            <li><span class="tick">✓</span><span>No scraping or unofficial automation is used.</span></li>
+            <li><span class="tick">✓</span><span>Publishing actions are reviewed before submission.</span></li>
+            <li><span class="tick">✓</span><span>Only required permission scopes are requested.</span></li>
+            <li><span class="tick">✓</span><span>Privacy and terms are publicly available.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="review">
+      <div class="container">
+        <div class="card">
+          <h2 class="section-title">CreatorFlow at a Glance</h2>
+          <p class="section-subtitle">
+            CreatorFlow is a desktop utility for creators who want a structured, review-driven
+            workflow for publishing their own video content through official integrations.
+          </p>
+
+          <div class="links">
+            <a href="https://zrasooli94.github.io/creatorflow/">Official Website</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-box">
+        <div>
+          <strong>CreatorFlow</strong>
+          <p>Desktop creator publishing workflow for authenticated content management.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
