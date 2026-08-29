@@ -1,34 +1,590 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service - CreatorFlow</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service | CreatorFlow</title>
+
+  <meta
+    name="description"
+    content="CreatorFlow Terms of Service for the desktop creator publishing utility."
+  />
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.1);
+      --text: #f5f7ff;
+      --muted: #b7c0d8;
+      --primary: #6d8cff;
+      --primary-2: #8b5cf6;
+      --success: #22c55e;
+      --max-width: 980px;
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(109,140,255,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(139,92,246,0.15), transparent 25%),
+        linear-gradient(180deg, #0a0f1d 0%, #0c1222 50%, #0a1020 100%);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(10,15,29,0.78);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #10192f, #1f2a44);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .brand-text small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.76rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .home-btn {
+      padding: 10px 15px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white !important;
+    }
+
+    .hero {
+      padding: 70px 0 30px;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dce5ff;
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1.08rem;
+      margin: 20px 0 0;
+    }
+
+    .updated {
+      margin-top: 18px;
+      color: #dce5ff;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .terms {
+      padding: 24px 0 60px;
+    }
+
+    .terms-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(24px, 4vw, 42px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.3);
+    }
+
+    .section {
+      padding: 8px 0 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 28px;
+    }
+
+    .section:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    li {
+      color: var(--muted);
+      display: flex;
+      gap: 10px;
+    }
+
+    li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 800;
+    }
+
+    strong {
+      color: white;
+    }
+
+    .notice {
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: linear-gradient(
+        135deg,
+        rgba(109,140,255,0.12),
+        rgba(139,92,246,0.09)
+      );
+      border: 1px solid rgba(109,140,255,0.22);
+      color: #dce5ff;
+    }
+
+    footer {
+      padding: 0 0 50px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: white;
+      font-weight: 600;
+    }
+
+    @media (max-width: 700px) {
+      .nav-links a:not(.home-btn) {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Terms of Service</h1>
 
-  <p>Last updated: August 29, 2026</p>
+<header>
+  <div class="container nav">
 
-  <p>
-    CreatorFlow is a desktop content publishing tool designed to help users manage and publish their own video content to supported platforms.
-  </p>
+    <a class="brand" href="index.html">
+      <div class="brand-mark">▶</div>
 
-  <h2>User Responsibility</h2>
-  <p>
-    Users are responsible for ensuring that they have the rights and permissions required to upload and publish their content.
-  </p>
+      <div class="brand-text">
+        CreatorFlow
+        <small>Desktop publishing for creators</small>
+      </div>
+    </a>
 
-  <h2>Third-Party Platforms</h2>
-  <p>
-    CreatorFlow may connect with third-party services such as TikTok. Use of those services is also subject to their respective terms and policies.
-  </p>
+    <div class="nav-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="index.html#features">Features</a>
+      <a class="home-btn" href="index.html">Back to CreatorFlow</a>
+    </div>
 
-  <h2>Availability</h2>
-  <p>
-    The service is provided as-is and may be updated, modified, or discontinued at any time.
-  </p>
+  </div>
+</header>
 
-  <p><a href="index.html">Back to CreatorFlow</a></p>
+
+<main>
+
+<section class="hero">
+  <div class="container">
+
+    <div class="badge">CreatorFlow Legal</div>
+
+    <h1>Terms of Service</h1>
+
+    <p>
+      These Terms of Service describe the conditions under which CreatorFlow
+      may be used to manage and publish creator-owned video content through
+      supported platform integrations.
+    </p>
+
+    <div class="updated">Last updated: August 29, 2026</div>
+
+  </div>
+</section>
+
+
+<section class="terms">
+  <div class="container">
+
+    <div class="terms-card">
+
+      <div class="section">
+        <h2>1. About CreatorFlow</h2>
+
+        <p>
+          CreatorFlow is a desktop creator utility designed to help
+          authenticated creators review, manage, and publish their own video
+          content through supported third-party platform integrations.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>2. Acceptance of These Terms</h2>
+
+        <p>
+          By using CreatorFlow, you agree to use the application in accordance
+          with these Terms of Service and the applicable rules of any connected
+          third-party platforms.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>3. Authorized Use</h2>
+
+        <p>
+          CreatorFlow is intended for creators managing content that they own
+          or are authorized to publish.
+        </p>
+
+        <ul>
+          <li>You must use accounts that you are authorized to access.</li>
+          <li>You must have the right to publish submitted video content.</li>
+          <li>You must comply with applicable platform policies.</li>
+          <li>You must not use CreatorFlow for unlawful activity.</li>
+        </ul>
+      </div>
+
+
+      <div class="section">
+        <h2>4. Creator Responsibility</h2>
+
+        <p>
+          The creator remains responsible for all content submitted through
+          CreatorFlow, including video, captions, metadata, and publishing
+          settings.
+        </p>
+
+        <p>
+          CreatorFlow does not transfer ownership of uploaded content.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>5. Connected Accounts</h2>
+
+        <p>
+          CreatorFlow may allow creators to connect supported third-party
+          accounts using official authentication mechanisms.
+        </p>
+
+        <p>
+          Creators are responsible for maintaining the security of their
+          accounts and local devices.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>6. TikTok Integration</h2>
+
+        <p>
+          CreatorFlow may use official TikTok developer services including
+          Login Kit and the Content Posting API.
+        </p>
+
+        <p>
+          TikTok functionality remains subject to TikTok's terms, developer
+          requirements, platform policies, privacy practices, and technical
+          availability.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>7. Publishing Controls</h2>
+
+        <p>
+          CreatorFlow may present relevant publishing information such as:
+        </p>
+
+        <ul>
+          <li>Authenticated creator account</li>
+          <li>Selected video file</li>
+          <li>Caption information</li>
+          <li>Available privacy settings</li>
+          <li>Available interaction settings</li>
+        </ul>
+
+        <p>
+          Creators are responsible for reviewing these settings before
+          confirming publication.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>8. Third-Party Platform Availability</h2>
+
+        <p>
+          CreatorFlow depends on external APIs and services operated by third
+          parties.
+        </p>
+
+        <p>
+          Features may become temporarily unavailable due to API limits,
+          authentication changes, service interruptions, policy changes, or
+          platform restrictions.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>9. Prohibited Use</h2>
+
+        <p>You may not use CreatorFlow to:</p>
+
+        <ul>
+          <li>Publish content without appropriate rights or permission</li>
+          <li>Access accounts without authorization</li>
+          <li>Attempt to bypass platform access controls or restrictions</li>
+          <li>Use the software for unlawful activity</li>
+          <li>Distribute malicious or harmful content</li>
+          <li>Interfere with connected platform services</li>
+        </ul>
+      </div>
+
+
+      <div class="section">
+        <h2>10. Intellectual Property</h2>
+
+        <p>
+          Creators retain responsibility for and rights to their own submitted
+          content, subject to any separate agreements with connected platforms.
+        </p>
+
+        <p>
+          CreatorFlow's software, interface, documentation, and branding remain
+          subject to their applicable ownership rights.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>11. No Guarantee of Publication</h2>
+
+        <p>
+          CreatorFlow cannot guarantee that a third-party platform will accept,
+          process, publish, distribute, recommend, or retain submitted content.
+        </p>
+
+        <p>
+          Connected platforms independently determine content eligibility,
+          moderation, visibility, distribution, and availability.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>12. Service Availability</h2>
+
+        <p>
+          CreatorFlow may be modified, updated, temporarily unavailable, or
+          discontinued as functionality and platform integrations evolve.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>13. Limitation of Responsibility</h2>
+
+        <p>
+          CreatorFlow is provided as a creator publishing utility and relies on
+          external services for connected-platform functionality.
+        </p>
+
+        <p>
+          The creator remains responsible for verifying content, account
+          permissions, captions, publishing settings, and compliance with
+          applicable rules.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>14. Privacy</h2>
+
+        <p>
+          Use of CreatorFlow is also governed by the CreatorFlow Privacy Policy.
+        </p>
+
+        <p>
+          <a href="privacy.html">
+            <strong>View the CreatorFlow Privacy Policy →</strong>
+          </a>
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>15. Changes to These Terms</h2>
+
+        <p>
+          These Terms may be updated as CreatorFlow evolves or as connected
+          platform requirements change.
+        </p>
+
+        <p>
+          The latest version will be published on this page.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h2>16. Contact</h2>
+
+        <p>
+          Questions regarding these Terms may be submitted through the
+          CreatorFlow project repository or official project channels.
+        </p>
+
+        <div class="notice">
+          CreatorFlow is designed for authorized creators publishing their own
+          content through official platform integrations.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+
+<footer>
+  <div class="container">
+
+    <div class="footer">
+
+      <div>
+        <strong>CreatorFlow</strong>
+        <p>Desktop creator publishing workflow.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
 </body>
 </html>
