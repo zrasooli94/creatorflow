@@ -1,44 +1,561 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - CreatorFlow</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | CreatorFlow</title>
+  <meta
+    name="description"
+    content="CreatorFlow Privacy Policy explaining how creator authentication, local video content, and connected platform data are handled."
+  />
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #f5f7ff;
+      --muted: #b7c0d8;
+      --primary: #6d8cff;
+      --primary-2: #8b5cf6;
+      --accent: #22d3ee;
+      --success: #22c55e;
+      --max-width: 980px;
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(109,140,255,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(139,92,246,0.15), transparent 25%),
+        linear-gradient(180deg, #0a0f1d 0%, #0c1222 50%, #0a1020 100%);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(10,15,29,0.78);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #10192f, #1f2a44);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .brand-text small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.76rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .home-btn {
+      padding: 10px 15px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white !important;
+    }
+
+    .hero {
+      padding: 70px 0 30px;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dce5ff;
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1.08rem;
+      margin: 20px 0 0;
+    }
+
+    .updated {
+      margin-top: 18px;
+      color: #dce5ff;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .policy {
+      padding: 24px 0 60px;
+    }
+
+    .policy-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(24px, 4vw, 42px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.3);
+    }
+
+    .section {
+      padding: 8px 0 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 28px;
+    }
+
+    .section:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    li {
+      color: var(--muted);
+      display: flex;
+      gap: 10px;
+    }
+
+    li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 800;
+    }
+
+    strong {
+      color: white;
+    }
+
+    .notice {
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: linear-gradient(
+        135deg,
+        rgba(109,140,255,0.12),
+        rgba(34,211,238,0.08)
+      );
+      border: 1px solid rgba(109,140,255,0.22);
+      color: #dce5ff;
+    }
+
+    footer {
+      padding: 0 0 50px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: white;
+      font-weight: 600;
+    }
+
+    @media (max-width: 700px) {
+      .nav-links a:not(.home-btn) {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Privacy Policy</h1>
 
-  <p>Last updated: August 29, 2026</p>
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <div class="brand-mark">▶</div>
+      <div class="brand-text">
+        CreatorFlow
+        <small>Desktop publishing for creators</small>
+      </div>
+    </a>
 
-  <p>
-    CreatorFlow is a desktop application used to publish and manage a user's own video content.
-  </p>
+    <div class="nav-links">
+      <a href="terms.html">Terms</a>
+      <a href="index.html#features">Features</a>
+      <a class="home-btn" href="index.html">Back to CreatorFlow</a>
+    </div>
+  </div>
+</header>
 
-  <h2>Information We Use</h2>
-  <p>
-    CreatorFlow may access account authorization information required to connect to supported third-party platforms.
-  </p>
+<main>
 
-  <h2>Authentication Data</h2>
-  <p>
-    Access tokens and refresh tokens are stored locally on the user's device and are used only to perform authorized actions.
-  </p>
+  <section class="hero">
+    <div class="container">
+      <div class="badge">CreatorFlow Legal & Privacy</div>
 
-  <h2>Video Content</h2>
-  <p>
-    Video files are processed and uploaded only when instructed or configured by the user.
-  </p>
+      <h1>Privacy Policy</h1>
 
-  <h2>Third-Party Services</h2>
-  <p>
-    CreatorFlow may interact with third-party APIs such as TikTok. Those platforms may process information according to their own privacy policies.
-  </p>
+      <p>
+        This Privacy Policy explains how CreatorFlow handles creator
+        authentication information, local video content, publishing data,
+        and interactions with supported third-party platforms.
+      </p>
 
-  <h2>Data Sharing</h2>
-  <p>
-    CreatorFlow does not sell personal data.
-  </p>
+      <div class="updated">Last updated: August 29, 2026</div>
+    </div>
+  </section>
 
-  <p><a href="index.html">Back to CreatorFlow</a></p>
+
+  <section class="policy">
+    <div class="container">
+
+      <div class="policy-card">
+
+        <div class="section">
+          <h2>1. About CreatorFlow</h2>
+
+          <p>
+            CreatorFlow is a desktop creator utility designed to help
+            authenticated creators review, manage, and publish their own
+            video content through supported platform integrations.
+          </p>
+
+          <p>
+            CreatorFlow uses official APIs and authorization mechanisms
+            provided by connected platforms.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>2. Information CreatorFlow May Access</h2>
+
+          <p>
+            When a creator connects a supported account, CreatorFlow may
+            receive information necessary to provide the requested publishing
+            functionality.
+          </p>
+
+          <ul>
+            <li>Basic authorized account information</li>
+            <li>Account identifiers required by official platform APIs</li>
+            <li>Available publishing and privacy settings</li>
+            <li>Authentication tokens required for authorized API access</li>
+            <li>Publishing status information for submitted content</li>
+          </ul>
+        </div>
+
+
+        <div class="section">
+          <h2>3. Authentication Information</h2>
+
+          <p>
+            CreatorFlow may store access tokens and refresh tokens locally on
+            the creator's device so the application can perform actions that
+            the creator has authorized.
+          </p>
+
+          <p>
+            Authentication credentials are used only for approved application
+            functionality and should not be shared publicly.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>4. Video Content</h2>
+
+          <p>
+            CreatorFlow processes video files selected or prepared by the
+            creator for publishing.
+          </p>
+
+          <p>
+            Local video files remain under the creator's control. CreatorFlow
+            sends a video to a connected platform only as part of an authorized
+            publishing workflow.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>5. TikTok Integration</h2>
+
+          <p>
+            CreatorFlow may integrate with TikTok using official TikTok
+            developer products, including Login Kit and the Content Posting API.
+          </p>
+
+          <p>
+            TikTok may independently process information submitted through its
+            APIs according to TikTok's own terms, developer policies, and
+            privacy practices.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>6. How Information Is Used</h2>
+
+          <p>Information accessed by CreatorFlow may be used to:</p>
+
+          <ul>
+            <li>Authenticate the creator</li>
+            <li>Display connected-account information</li>
+            <li>Retrieve available creator publishing settings</li>
+            <li>Upload creator-selected content</li>
+            <li>Check publishing and processing status</li>
+            <li>Recover safely from interrupted publishing operations</li>
+          </ul>
+        </div>
+
+
+        <div class="section">
+          <h2>7. Data Sharing</h2>
+
+          <p>
+            CreatorFlow does not sell personal information.
+          </p>
+
+          <p>
+            Information may be transmitted to connected services when required
+            to perform an action explicitly authorized through CreatorFlow,
+            such as authenticating an account or publishing selected content.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>8. Data Storage</h2>
+
+          <p>
+            CreatorFlow is designed as a desktop application. Application state,
+            authentication information, and publishing records may be stored
+            locally on the creator's device.
+          </p>
+
+          <p>
+            Creators remain responsible for maintaining the security of their
+            computer and local application files.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>9. Data Retention</h2>
+
+          <p>
+            Locally stored application data may remain on the creator's device
+            until it is removed by the creator or no longer required by the
+            application.
+          </p>
+
+          <p>
+            Data processed by connected third-party platforms may be subject to
+            those platforms' own retention policies.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>10. Creator Control</h2>
+
+          <p>
+            Creators control which supported accounts they authorize and which
+            content they choose to submit through CreatorFlow.
+          </p>
+
+          <p>
+            Authorization may be revoked through the connected platform where
+            supported.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>11. Security</h2>
+
+          <p>
+            CreatorFlow is designed to use official authentication and API
+            mechanisms instead of collecting platform passwords directly.
+          </p>
+
+          <p>
+            Reasonable technical measures are used to reduce accidental
+            disclosure of locally stored authentication information.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>12. Third-Party Services</h2>
+
+          <p>
+            CreatorFlow depends on external services and APIs for some
+            functionality. These services operate independently and may have
+            their own terms, privacy policies, limitations, and availability.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>13. Changes to This Privacy Policy</h2>
+
+          <p>
+            This policy may be updated as CreatorFlow's functionality or
+            integrations change.
+          </p>
+
+          <p>
+            The most recent version will be published on this page with an
+            updated revision date.
+          </p>
+        </div>
+
+
+        <div class="section">
+          <h2>14. Contact</h2>
+
+          <p>
+            Questions regarding this Privacy Policy may be submitted through
+            the CreatorFlow project repository or official project channels.
+          </p>
+
+          <div class="notice">
+            CreatorFlow is intended to help creators manage and publish their
+            own content through authorized platform integrations.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="container">
+    <div class="footer">
+
+      <div>
+        <strong>CreatorFlow</strong>
+        <p>Desktop creator publishing workflow.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
